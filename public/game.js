@@ -1,25 +1,7 @@
 'use strict';
-
-// Establish a Socket.io connection
-const socket = io();
-// Initialize our Feathers client application through Socket.io
-const app = feathers()
-  .configure(feathers.socketio(socket))
-  .configure(feathers.hooks())
-  // Use localStorage to store our login token
-  .configure(feathers.authentication({
-    storage: window.localStorage
-  }));
-  
-// Get the Feathers services we want to use
-const piece = app.service('pieces');
-const user = app.service('users')
-
-let roomName;
-
 const chess = {
 
-	step: 1,
+    step: 1,
 
     pieces: ['<img class="piece" src="1.png">', '<img class="piece" src="2.png">'],
 
@@ -83,10 +65,10 @@ const chess = {
             const coords = this.getCellCoords(cell);
             const x = coords[0];
             const y = coords[1];
-            	piece.create({
-	                x: x,
-	                y: y
-	            })
+                piece.create({
+                    x: x,
+                    y: y
+                })
             
         }
     },
@@ -153,7 +135,6 @@ const chess = {
     }
 
 };
-
 
 const winning = {
     getColor: function(x, y){
@@ -251,6 +232,24 @@ const winning = {
     
 };
 
+
+// Establish a Socket.io connection
+const socket = io();
+// Initialize our Feathers client application through Socket.io
+const app = feathers()
+  .configure(feathers.socketio(socket))
+  .configure(feathers.hooks())
+  // Use localStorage to store our login token
+  .configure(feathers.authentication({
+    storage: window.localStorage
+  }));
+  
+// Get the Feathers services we want to use
+const piece = app.service('pieces');
+const user = app.service('users')
+
+
+
 function placePiece(piece) {
 	const cell=chess.selectCell(piece.x, piece.y);
 	const user=piece.sentBy
@@ -259,22 +258,6 @@ function placePiece(piece) {
 	chess.step = 3-chess.step;
 	$('#color').empty()
 	$('#color').append('Stone for this step: ' + chess.pieces[chess.step-1])
-}
-
-function findPiece(x,y) {
-	let num = false;
-	piece.find({
-		query:{
-			x,y
-		}
-	})
-	.then(res=>{
-		if (res.data) {
-			num = true;
-		}
-	})
-
-	return num
 }
 
 function showWinner(piece) {
@@ -327,14 +310,6 @@ app.authenticate().then((storage) => {
     chess.over = false;
   })
 
-  // Find all users
-
-  user.find().then(page => {
-    const users = page.data;
-  });
-
-  // We will also see when new users get created in real-time
-  userService.on('created', addUser);
 })
 // On unauthorized errors we just redirect back to the login page
 .catch(error => {
