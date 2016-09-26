@@ -1,0 +1,14 @@
+{
+  "host": "localhost",
+  "port": 3030,
+  "postgres": "postgres://postgres:@localhost:5432/chess",
+  "public": "../public/",
+  "auth": {
+    "idField": "id",
+    "token": {
+      "secret": "2ly+Tjr15UnU9Nn3TQpjsQCeCLWGgtvMMDbJggan4QNDB/TS6S9StzoMf+R/Ljoq998Z9sq17MP8dVgpdoVKAw=="
+    },
+    "local": {},
+    "successRedirect": "/game.html"
+  }
+}

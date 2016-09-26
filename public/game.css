@@ -1,0 +1,91 @@
+body {
+  font-family: Quicksand;
+  padding: 10px;
+  background-color: #B8F0DF;
+}
+
+h1, h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+#board{
+  margin: 0 auto;
+  padding: 16px 16px 16px 16px;
+  background-image: url(board.jpg);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  border-collapse: separate;
+  border-spacing: 0px 0px;
+}
+
+#board td{
+  border: none;
+  width: 22px;
+  height: 22px;
+  padding:0;
+  margin:0;
+  line-height: 22px;
+}
+
+td .piece {
+  width: 20px;
+  height: 20px;
+  border: none;
+  margin:0 !important;
+  padding:0 !important;
+  display: block;
+  vertical-align: bottom;
+}
+
+#myCanvas {
+   width: 80%;
+    height: 80%;
+}
+
+#board tr{
+  padding:0;
+}
+
+
+.vcenter {
+  display: inline-block;
+  vertical-align: middle;
+  float: none;
+}
+
+.control_panel {
+  font-family: Quicksand;
+  font-size: 18px;
+}
+
+.control_panel img {
+  width: 20px;
+  height: 20px;
+  border: none;
+  margin-left: 10px;
+}
+
+#result {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    font-family: Quicksand;
+    text-shadow: 2px 2px #FFFFFF;
+    text-align: center;
+}
+
+#result h2 {
+    font-weight:900;
+    font-size: 50px;
+    color: #007A5B;
+}
+
+.stone {
+  border: none;
+}
+
+.footer {
+  margin-top: 20px;
+}
+
